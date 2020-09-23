@@ -19,14 +19,17 @@ const Auth = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
-      let data;
+      let provider;
       if (newAccount) {
-        data = await authService.createUserWithEmailAndPassword(
+        provider = await authService.createUserWithEmailAndPassword(
           email,
           password
         );
       } else {
-        data = await authService.signInWithEmailAndPassword(email, password);
+        provider = await authService.signInWithEmailAndPassword(
+          email,
+          password
+        );
       }
     } catch (error) {
       setError(error.message);
